@@ -14,7 +14,7 @@ print("Your Receipt")
 print("----------------")
 if regularAmount <= 19.99:
     newAmount = regularAmount 
-    print(f"{quantity} {product}'s @ {newAmount:.2f} each ")
+    print(f"{quantity} {product}'s @ {newAmount:.2f} each")
 elif regularAmount > 19.99 and regularAmount <= 39.99 :
     fifteen= regularAmount * .15
     newAmount = regularAmount - fifteen
@@ -29,7 +29,6 @@ else:
 # Calculate the sales tax on the total purchase.  
 # Assume a state sales tax rate of 6.5%.  
 salesTax = (newAmount * quantity) * .065
-
 print(f"Sales Tax : ${salesTax:.2f}")
 
 # The rate should be calculated on the total price of the products after discount savings.
@@ -42,7 +41,7 @@ print(f"Total amount due : ${totalWithDiscount:,.2f}")
 
 # Format the output as a fixed point number with two-decimal places, a comma as a thousand separator and the dollar sign.
 
-#   *****IM A BIT LOST ON THIS PART!*****
+#   *****thank you for your help here! my code turned read when i tried it and i thought it was wrong :)*****
 
 # Display the total amount saved.
 ogPrice = regularAmount * quantity
@@ -51,6 +50,6 @@ youSaved = ogPrice - (quantity * newAmount)
 if noDiscount :
     print("Thank you for shopping with us!")
 else :
-    print(f"You saved ${youSaved:.2f} today!")
+    print(f"You saved ${youSaved:,.2f} today!")
 
 
