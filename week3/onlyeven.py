@@ -15,18 +15,17 @@
 #     pos_num = int(pos_num)
 #     break
 
-
 while True:
     try:
-        pos_num =int(input("Please enter a postive number: "))
+        pos_num =int(input("Please enter a positive number: "))
         if pos_num % 2 == 0:
             break 
     except:
-        print("Invalid input. Please enter a postive number")
+        print("Invalid input. Please enter a positive number")
 
 print("--------")
 
-for current_num in range(pos_num+1,):
+for current_num in range(pos_num+1):
     if current_num % 2 == 0:
         print(current_num)
 
