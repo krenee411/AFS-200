@@ -50,21 +50,30 @@ def checkGuess(blanks, guessed_letter):
         userGuesses -= 1
         guessed_letter = input("Guess a letter: ").capitalize()
         if guessed_letter in secret_word :
-            newBlanks= "".join(c if c in guessed_letter else "_ " for c in secret_word)
+            newBlanks= "".join(letter if letter in guessed_letter else "_ " for letter in secret_word)
             index = 0
             for letter in newBlanks:
-                # I can not figuer out how to get the correct_guess to stay in the next line so the
-                # player can keep guessing? 
+                # I can not figuer out how to get the correct_guess to stay in the next line so the player can keep guessing? 
                 if letter != "_" and letter != " ":
                     blanks = blanks[:index] + letter + blanks[index +1:] 
                     correct_guess.append(letter) 
                     index += 1
-            print("Correct")
-            print(correct_guess)
+            print(f"Correct there is a {guessed_letter} in the secret word!")
+            print(f"you have {userGuesses} left")
             print("Word: ", newBlanks)
-        
+            print(correct_guess)
+        elif userGuesses == 0:
+            print("do you think you can guess the word?")
+            final_answer = input().upper()
+            if final_answer == secret_word:
+                print("Awesome you got it")
+            else:
+                print("Sorry You Lose")
         else: 
-            print("Sorry that letter is not in the secret word.")
+            print(f"Sorry there is no {guessed_letter} in the secret word.")
+            print(f"you have {userGuesses} left")   
+
+        
              
 
 checkGuess("_ ", guessed_letter)
