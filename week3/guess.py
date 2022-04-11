@@ -29,52 +29,60 @@
 
 # print(checkGuess(guessed_letter=))
 
-secret_word = "MORBID"
-guessed_letter = ""
-correct_guess = []
+
+secret_word = 'MORBID'
+guess = []
 userGuesses= 6
+wordBoard = ['_','_','_','_','_','_']
+alive = True
 
 print("Can you guess this popular podcast name?")
 print("You get six guesses")
 
 
-def wordBoard():
-    blanks = "_ " * len(secret_word)
-    checkGuess(blanks, secret_word)
-
-
-def checkGuess(blanks, guessed_letter):
-    print("Word: ",blanks * len(secret_word))
-    userGuesses= 6
-    while userGuesses != 0 :
-        userGuesses -= 1
+def showBoard():
+    while alive:
+        print(wordBoard)
         guessed_letter = input("Guess a letter: ").capitalize()
-        if guessed_letter in secret_word :
-            newBlanks= "".join(letter if letter in guessed_letter else "_ " for letter in secret_word)
-            index = 0
-            for letter in newBlanks:
-                # I can not figuer out how to get the correct_guess to stay in the next line so the player can keep guessing? 
-                if letter != "_" and letter != " ":
-                    blanks = blanks[:index] + letter + blanks[index +1:] 
-                    correct_guess.append(letter) 
-                    index += 1
-            print(f"Correct there is a {guessed_letter} in the secret word!")
-            print(f"you have {userGuesses} left")
-            print("Word: ", newBlanks)
-            print(correct_guess)
-        elif userGuesses == 0:
+        
+        if len(guessed_letter) > 1 or guessed_letter.isnumeric():
+                print("Please enter a single letter")
+        else:
+            checkGuess(guessed_letter)
+
+def addLetter(guessed_letter):
+    for i in range(len(secret_word)):
+        if secret_word[i] == guessed_letter:
+            wordBoard[i] = guessed_letter
+
+def checkGuess(guessed_letter):
+    global userGuesses
+    global alive
+    if userGuesses != 0 :
+        userGuesses -= 1
+        if guessed_letter in secret_word: 
+            if guessed_letter in guess :
+                print('you hav already guessed that letter. Try again!') 
+            else:
+                addLetter(guessed_letter)
+                guess.append(guessed_letter)
+                print(f"Correct there is a {guessed_letter} in the secret word!")
+                print(f"you have {userGuesses} left")
+        else:
+            if guessed_letter in guess:
+                print('you hav already guessed that letter. Try again!') 
+            else:
+                print(f"Sorry there is no {guessed_letter} in the secret word.")
+                print(f"you have {userGuesses} left")
+        if userGuesses == 1:
             print("do you think you can guess the word?")
+            print(wordBoard)
             final_answer = input().upper()
             if final_answer == secret_word:
-                print("Awesome you got it")
+                print("Congratulations!! You guessed the secret word!!")
+                alive = False
             else:
-                print("Sorry You Lose")
-        else: 
-            print(f"Sorry there is no {guessed_letter} in the secret word.")
-            print(f"you have {userGuesses} left")   
-
-        
-             
-
-checkGuess("_ ", guessed_letter)
-
+                alive = False
+                print("Sorry you are out of lives and you did not guess the secret word")
+                print(f"The secret word was {secret_word}")
+showBoard()
