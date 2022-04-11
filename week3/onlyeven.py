@@ -1,3 +1,4 @@
+
 # Create a file called "onlyeven.py"
 # Prompt the user to enter a positive number
 # Verify that the input is an integer and it is positive. Research the isDigit() method of the string 
@@ -5,27 +6,36 @@
 # Create a function that displays only even numbers between and including 0 up to and including
 #  (if valid) the number provided by the user.
 
-# pos_num =input("Please enter a postive number: ")
 
-# x = pos_num.isdigit() 
 # while True:
-#     pos_num = input("Invalid input. Please enter a postive number: ")
-#     break
-# while True:
-#     pos_num = int(pos_num)
-#     break
+#     try:
+#         pos_num =int(input("Please enter a positive number: "))
+#         if pos_num % 2 == 0:
+#             break 
+#     except:
+#         print("Invalid input. Please enter a positive number")
+
+# print("--------")
+
+# for current_num in range(pos_num+1):
+#     if current_num % 2 == 0:
+#         print(current_num)
+
+
+# ********* Sorry I was making this really complicated. I thought I could only accept an even number as the input! ***********
+# thank you for clearing that up!! 
+
 
 while True:
-    try:
-        pos_num =int(input("Please enter a positive number: "))
-        if pos_num % 2 == 0:
-            break 
-    except:
-        print("Invalid input. Please enter a positive number")
+    user_number = input("Please enter a postive number: ")
+    if(user_number.isdigit() and (int(user_number)> 0)):
+        break 
+    print("Invalid input.", end=" ")
+
+
 
 print("--------")
 
-for current_num in range(pos_num+1):
+for current_num in range(int(user_number)+1):
     if current_num % 2 == 0:
         print(current_num)
-
