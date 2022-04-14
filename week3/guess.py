@@ -32,23 +32,29 @@
 
 secret_word = 'MORBID'
 guess = []
-userGuesses= 6
+userGuesses= 5
 wordBoard = ['_','_','_','_','_','_']
 alive = True
 
 print("Can you guess this popular podcast name?")
-print("You get six guesses")
+print("You get five guesses")
 
 
 def showBoard():
+    for ch in wordBoard:
+        print(ch, end=' ')
+    print()
+
+
+def getGuess():
     while alive:
-        print(wordBoard)
         guessed_letter = input("Guess a letter: ").capitalize()
         
         if len(guessed_letter) > 1 or guessed_letter.isnumeric():
                 print("Please enter a single letter")
         else:
             checkGuess(guessed_letter)
+        showBoard()
 
 def addLetter(guessed_letter):
     for i in range(len(secret_word)):
@@ -59,7 +65,6 @@ def checkGuess(guessed_letter):
     global userGuesses
     global alive
     if userGuesses != 0 :
-        userGuesses -= 1
         if guessed_letter in secret_word: 
             if guessed_letter in guess :
                 print('you hav already guessed that letter. Try again!') 
@@ -72,11 +77,12 @@ def checkGuess(guessed_letter):
             if guessed_letter in guess:
                 print('you hav already guessed that letter. Try again!') 
             else:
+                userGuesses -= 1
                 print(f"Sorry there is no {guessed_letter} in the secret word.")
                 print(f"you have {userGuesses} left")
         if userGuesses == 1:
             print("do you think you can guess the word?")
-            print(wordBoard)
+            showBoard()
             final_answer = input().upper()
             if final_answer == secret_word:
                 print("Congratulations!! You guessed the secret word!!")
@@ -86,3 +92,4 @@ def checkGuess(guessed_letter):
                 print("Sorry you are out of lives and you did not guess the secret word")
                 print(f"The secret word was {secret_word}")
 showBoard()
+getGuess()
