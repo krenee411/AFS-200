@@ -14,11 +14,11 @@ class User():
         self.picThumbnail = picThumbnail
 
     def setFullName(self, firstName, lastName):
-       self.firstName= firstName
-       self.lastName= lastName 
+       self.fullName= firstName , lastName
+         
     
     def getFullName(self):
-        return self.firstName + self.lastName
+        return self.fullName
 
     def setEmail(self, email):
         self.email = email
@@ -27,35 +27,33 @@ class User():
         return self.email
     
     def setLoginData(self, username, password):
-        self.username = username
-        self.password = password
+        self.loginInfo = username , password
     
     def getLoginData(self):
-        return self.username, self.password
+        return self.loginInfo
 
     def setNumbers(self, phone, cell):
-        self.phone = phone
-        self.cell = cell
+        self.contacts = phone , cell
     
     def getNumbers(self):
-        return self.phone, self.cell
+        return self.contacts
 
     def setProfilePic(self, picLarge, picThumbnail):
-        self.picLarge = picLarge
-        self.picThumbnail = picThumbnail
+        self.photos = picLarge , picThumbnail
+         
     
     def getProfilePic(self):
-        return self.picLarge, self.picThumbnail
+        return self.photos
 
-    def setUserID(self, UUID):
+    def setUUID(self, UUID):
         self.UUID = UUID
     
-    def getUserID(self):
+    def getUUID(self):
         return self.UUID
     
 
     def __str__(self):
-        return str(self.firstName + " " + self.lastName + " (" +email + ")")
+        return str(self.firstName + " " + self.lastName + " (" +self.email + ")")
         
 
 class AuthorizedUsers():
@@ -92,6 +90,7 @@ myApprovedUserList = AuthorizedUsers()
 jsonUserData = getData("us")
 
 
+
         #get users:  https://randomuser.me/api/?results=10&nat=us
         #get nationality:   https://randomuser.me/api/?nat=us
         #display only name and email:   https://randomuser.me/api/?inc=name,email
@@ -115,7 +114,8 @@ for currentUser in jsonUserData["results"]:
     picThumbnail = firstGetPic["thumbnail"]
 
 
-    newUser = User(firstName, lastName, email, UUID, username, password, phone, cell, picLarge, picThumbnail)
+    newUser = User(firstName,lastName, email, username, password, UUID, phone, cell, picLarge, picThumbnail)
     myApprovedUserList.userLibary(newUser)
 
 myApprovedUserList.showUserlist()
+
