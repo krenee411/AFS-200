@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" />
+    <title>Flask Address Book</title>
+</head>
+{% include 'header.html' %}
+<body>
+    <div class="search-wrapper">
+        <form action="http://127.0.0.1:5000/search" method="POST">
+            <label for="search">Search Address Book</label><br>
+            <input type="search" id="search" name="search">
+            <button type="submit">Search</button>
+            <button onclick="location.href='/'">Clear Results</button>
+        </form>
+        
+    </div>
+    <div class="rolodex">
+        {% for address in results %}
+            <div class="card">
+                <div class="photo"><img src="address.getPhoto()"/></div>
+                <div class="name">{{address.firstName}} {{address.lastName}}</div>
+                <div class="phone">{{address.phone}}</div>
+                <div class="emal">{{address.email}}</div>
+            </div> 
+		
+        {% endfor %}     
+    </div>
+</body>
+
+{% include 'footer.html' %}
+</html>
