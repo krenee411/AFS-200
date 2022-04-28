@@ -21,7 +21,7 @@
     <div class="rolodex">
         {% for address in results %}
             <div class="card">
-                <div class="photo"><img src="address.getPhoto()"/></div>
+                <div class="photo"><img src="{{address.getPhoto()}}"/></div>
                 <div class="name">{{address.firstName}} {{address.lastName}}</div>
                 <div class="phone">{{address.phone}}</div>
                 <div class="emal">{{address.email}}</div>
