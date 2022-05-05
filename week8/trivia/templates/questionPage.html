@@ -7,16 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-        {% for question in results %}
-        <heder>
-            <h1>{{question.category}}</h1>
-            <h1>{{question.difficulty}}</h1>
-        </heder>
-        <div class="questCard">
-            <h1>{{question.question}}</h1>
-            <h1>{{question.getShuffledAnswers()}}</h1>
+    <form action="/score" method="POST">
+        {% for question in questions %}
+        <div>
+            <h3>{{ question.question }}</h3>
         </div>
-
+            {% for answer in question.shuffled_answers %}
+            <div>
+                <input type="radio" name="{{ question.id }}" value="{{ answer }}"></input>
+                <label for="{{ answer }}">{{ answer }}</label>
+            </div>
+            {% endfor %}
         {% endfor %}
+        <button type="submit">Score</button>
+    </form>
 </body>
 </html>
