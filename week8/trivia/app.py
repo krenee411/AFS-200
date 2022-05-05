@@ -18,8 +18,8 @@ def home():
 
 @app.route("/score", methods=['POST'])
 def score():
-    user_answer = request.form.get('1')
-    return render_template('answers.html', answers=questionList.getAllQuestions(), userAnswer=user_answer)
+    
+    return render_template('answers.html', answers=questionList.getAllQuestions())
 
 if __name__ == "__main__":
     app.run()
