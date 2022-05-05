@@ -3,13 +3,12 @@
 
 <main style="text-align: center;">
     Here are your contacts
-    <div class="card"></div>
+    <div class="card">
         {% for address in results%}
-            <div class="photo"></div>
+            <div class="photo">
                 <img src="{{address.getPhoto()}}"></img>
             </div>
                 <h1 class="name">{{address}}</h1>
-
             
         {% endfor %}
     </div>

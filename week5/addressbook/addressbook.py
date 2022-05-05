@@ -73,7 +73,7 @@ class AddressBook():
         results = []
         for address in self.addresses:
             results.append(address)
-            # print(address)
+            print(address)
         return results
     
     def findAllMatching(self,searchStr):
