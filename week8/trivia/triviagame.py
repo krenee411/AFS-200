@@ -6,6 +6,8 @@ import triviaquestion
 class TriviaGame():
     def __init__(self):
         self.questions = []
+        self.correctQuestions = []
+        self.incorrectQuestions = []
 
     def getAllQuestions(self):
         return self.questions
@@ -28,15 +30,27 @@ class TriviaGame():
             print(err)
 
     def storeQuestions(self,jsonTriviaData):
-
+        id = 0
         for currentQuestion in jsonTriviaData["results"]:
-            question =  currentQuestion["question"],
-            category = currentQuestion["category"],
-            difficulty = currentQuestion["difficulty"],
-            correct_answer = currentQuestion["correct_answer"],
-            incorrect_answers =currentQuestion["incorrect_answers"],
-                
-        newTriviaQuestion = triviaquestion.TriviaQuestion(question, category, difficulty, correct_answer, incorrect_answers, id)
-        self.questions.append(newTriviaQuestion)
+            question =  currentQuestion["question"]
+            category = currentQuestion["category"]
+            difficulty = currentQuestion["difficulty"]
+            correct_answer = currentQuestion["correct_answer"]
+            incorrect_answers =[]
+            for wrongAnswer in currentQuestion["incorrect_answers"]:
+                incorrect_answers.append(wrongAnswer)
+                id += 1
+            newTriviaQuestion = triviaquestion.TriviaQuestion(question, category, difficulty, correct_answer, incorrect_answers, "", id)
+            self.questions.append(newTriviaQuestion)
 
-    print(getData(0,3,22))
+    def setCorrectQuestion(self, correctQuestions):
+        self.correctQuestions = correctQuestions
+    
+    def setIncorrectQuestion(self, incorrectQuestions):
+        self.incorrectQuestions = incorrectQuestions
+
+
+
+
+
+    # print(getData(0,3,22))

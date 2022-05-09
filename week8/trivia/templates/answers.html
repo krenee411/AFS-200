@@ -8,17 +8,23 @@
 </head>
     <body>
         <form action="/" method="GET">
-            {% for question in answers %}
+            <h1>You got the following questions correct:</h1>
+            {% for question in answers.correctQuestions %}
             <div>
-                <h3>{{ question.question }}</h3>
+                <h2>{{ question.question }}</h2>
+        
+                <h3>The correctly answerered: {{ question.correct_answer }} </h3>
+                
             </div>
+            {% endfor %}
+            <h1>----------------------------------------------</h1>
+            <h1>You got the following questions correct:</h1>
+            {% for question in answers.incorrectQuestions %}
             <div>
-                <h3>Your answer was...</h3>
-                <h3>{{ userAnswer }}</h3>
-            </div>
-            <div>
-                <h3>The correct answer was...</h3>
-                <h3>{{ question.correct_answer }}</h3>
+                <h2>{{ question.question }}</h2>
+        
+                <h3>- The correct answer is: {{ question.correct_answer }} </h3>
+                
             </div>
             {% endfor %}
             <button type="submit">More Trivia!</button>

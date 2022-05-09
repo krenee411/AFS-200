@@ -10,6 +10,7 @@ class TriviaQuestion:
     difficulty: str
     correct_answer: str
     incorrect_answers: list
+    userAnswer: str
     id: int
 
     def getQuestion(self):
@@ -33,9 +34,18 @@ class TriviaQuestion:
     def getShuffledAnswers(self):
         answers =[]
         answers.append(self.correct_answer)
-        for wrong in self.incorrect_answers:
-            answers.append(wrong)
-            random.shuffle(answers)
+        answers.extend(self.incorrect_answers)
+        # for wrong in self.incorrect_answers:
+        #     answers.append(wrong)
+        random.shuffle(answers)
         return answers
 
+    def getId(self):
+        return self.id
+
+    def getUserAnswer(self):
+        return self.userAnswer
+
+    def setUserAnswer(self, userAnswer):
+        self.userAnswer = userAnswer
 
